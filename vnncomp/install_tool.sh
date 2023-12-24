@@ -1,7 +1,7 @@
 #! /usr/bin/env bash                                                                                                                                                                                               
 
 apt-get update
-apt-get -y install protobuf-compiler libprotoc-dev cmake
+apt-get -y install protobuf-compiler libprotoc-dev cmake gfortran python3-dev
 
 script_name=$(realpath $0)
 script_path=$(dirname "$script_name")
