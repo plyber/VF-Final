@@ -165,7 +165,6 @@ void MILPEncoder::encodeQuadraticConstraint( GurobiWrapper &gurobi, QuadraticCon
 {
   auto bs = quad->getBs();
   auto f = quad->getF();
-  gurobi.addQuadraticConstraint(Stringf( "x%u", *(bs.begin()) ), Stringf( "x%u", *(bs.end()) ), Stringf( "x%u", f ));
   return;
 }
 

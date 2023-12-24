@@ -2908,15 +2908,9 @@ bool Engine::solveWithMILPEncoding( unsigned timeoutInSeconds )
           // Return UNKNOWN if input query has transcendental constratints.
       if ( (!haveNonSigmoid) && _preprocessedQuery->getTranscendentalConstraints().size() > 0 )
           {
-            IncrementalLinearization* incrLinear = new IncrementalLinearization
-              ( *_milpEncoder, *_preprocessedQuery );
-            _exitCode = incrLinear->solveWithIncrementalLinearization
-              ( *_gurobi, timeoutForGurobi - passedTime / 1000000,
-                threads, _verbosity );
-            if ( _exitCode == IEngine::SAT )
-              return true;
-            else
-              return false;
+             throw MarabouError( MarabouError::FEATURE_NOT_YET_SUPPORTED, "UNKNOWN (Marabou doesn't support UNKNOWN cases with exitCode yet.)" );
+                        // _exitCode = IEngine::UNKNOWN;
+                        // return false;
         }
         else {
           _exitCode = IEngine::SAT;
