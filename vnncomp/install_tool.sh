@@ -1,5 +1,6 @@
 #! /usr/bin/env bash                                                                                                                                                                                               
 
+apt-get update
 apt-get -y install protobuf-compiler libprotoc-dev cmake
 
 script_name=$(realpath $0)
