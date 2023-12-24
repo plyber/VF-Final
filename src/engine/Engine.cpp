@@ -19,7 +19,6 @@
 #include "DisjunctionConstraint.h"
 #include "Engine.h"
 #include "EngineState.h"
-#include "IncrementalLinearization.h"
 #include "InfeasibleQueryException.h"
 #include "InputQuery.h"
 #include "MStringf.h"
