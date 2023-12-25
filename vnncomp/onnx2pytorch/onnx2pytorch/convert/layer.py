@@ -27,9 +27,9 @@ def extract_params(params):
 
 def load_params(layer, weight, bias):
     """Load weight and bias to a given layer from onnx format."""
-    layer.weight.data = torch.from_numpy(numpy_helper.to_array(weight))
+    layer.weight.data = torch.from_numpy(np.array(numpy_helper.to_array(weight)))
     if bias is not None:
-        layer.bias.data = torch.from_numpy(numpy_helper.to_array(bias))
+        layer.bias.data = torch.from_numpy(np.array(numpy_helper.to_array(bias)))
 
 
 def convert_layer(node, layer_type, params=None):

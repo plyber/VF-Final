@@ -17,7 +17,6 @@ MarabouNetworkTF represents neural networks with piecewise linear constraints de
 import numpy as np
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
-os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 
 import tensorflow as tf
 tf.compat.v1.disable_v2_behavior()
