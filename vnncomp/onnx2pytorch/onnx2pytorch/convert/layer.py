@@ -31,7 +31,6 @@ def load_params(layer, weight, bias):
     if bias is not None:
         layer.bias.data = torch.from_numpy(np.array(numpy_helper.to_array(bias)))
 
-
 def convert_layer(node, layer_type, params=None):
     """Use to convert Conv, MaxPool, AvgPool layers."""
     assert layer_type in [

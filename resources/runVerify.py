@@ -82,8 +82,8 @@ if max_query_id > 1 and len(outputVarsMap) == 0:
         if result == "sat":
             # Load the onnx model
             sess_opt = ort.SessionOptions()
-            sess_opt.intra_op_num_threads = 0
-            sess_opt.inter_op_num_threads = 0
+            sess_opt.intra_op_num_threads = 2
+            sess_opt.inter_op_num_threads = 2
             ort_model = ort.InferenceSession(onnx_network, sess_opt)
             name, shape, dtype = [(i.name, i.shape, i.type) for i in ort_model.get_inputs()][0]
             if shape[0] in ["batch_size", "unk__195"]:

@@ -52,8 +52,8 @@ def output_property_hold(outputs, output_specs):
 
 # Load the onnx model
 sess_opt = ort.SessionOptions()
-sess_opt.intra_op_num_threads = 0
-sess_opt.inter_op_num_threads = 0
+sess_opt.intra_op_num_threads = 6
+sess_opt.inter_op_num_threads = 6
 model = ort.InferenceSession(onnx_network, sess_opt)
 name, shape, dtype = [(i.name, i.shape, i.type) for i in model.get_inputs()][0]
 if shape[0] in ["batch_size", "unk__195"]:
