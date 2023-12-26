@@ -1,14 +1,0 @@
-onnx-layer-zoo:‚
-
-x
-shapey"Reshape
-5shape"Constant*"
-value*:Bconst_tensor reshapeZ
-x
-
-
-b
-y
-
-
-B
