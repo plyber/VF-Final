@@ -47,8 +47,15 @@ RUN find . -type f -name "*.gz" -exec echo {} \; -exec gunzip {} \;
 
 WORKDIR /usr/src/app
 RUN git clone https://github.com/Verified-Intelligence/alpha-beta-CROWN.git
-RUN git clone --branch vnn-comp-23 https://github.com/wu-haoze/Marabou.git
 
+RUN git clone --no-checkout https://github.com/plyber/VF-Final.git && \
+    cd VF-Final && \
+    git config core.sparseCheckout true && \
+    echo "Marabou/*" > .git/info/sparse-checkout && \
+    git checkout main && \
+    mv Marabou ../ && \
+    cd .. && \
+    rm -rf VF-Final
 RUN pip3 install numpy
 
 WORKDIR /usr/src/app/vnncomp2023/benchmarks/acasxu

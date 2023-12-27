@@ -5,7 +5,7 @@ services:
     container_name: neural-verification-test
     build:
       context: .
-      dockerfile: ../Marabou/Dockerfile
+      dockerfile: Dockerfile
     volumes:
       - ./data:/usr/src/app/data
     command: ["tail", "-f", "/dev/null"]
