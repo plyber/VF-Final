@@ -31,8 +31,10 @@ WORKDIR /usr/src/app
 
 ENV GIT_SSL_NO_VERIFY=true
 
-RUN mkdir "vnncomp2023"
+RUN git config --global core.eol lf && \
+    git config --global core.autocrlf false
 
+RUN mkdir "vnncomp2023"
 WORKDIR /usr/src/app/vnncomp2023
 
 RUN git init && \
@@ -48,7 +50,7 @@ RUN find . -type f -name "*.gz" -exec echo {} \; -exec gunzip {} \;
 WORKDIR /usr/src/app
 RUN git clone https://github.com/Verified-Intelligence/alpha-beta-CROWN.git
 
-RUN git clone --no-checkout https://github.com/plyber/VF-Final.git && \
+RUN git clone --no-checkout --config core.fileMode=true https://github.com/plyber/VF-Final.git && \
     cd VF-Final && \
     git config core.sparseCheckout true && \
     echo "Marabou/*" > .git/info/sparse-checkout && \
@@ -56,6 +58,9 @@ RUN git clone --no-checkout https://github.com/plyber/VF-Final.git && \
     mv Marabou ../ && \
     cd .. && \
     rm -rf VF-Final
+
+RUN find /usr/src/app/Marabou -type f -name "*.sh" -exec chmod +x {} \;
+
 RUN pip3 install numpy
 
 WORKDIR /usr/src/app/vnncomp2023/benchmarks/acasxu
