@@ -64,6 +64,7 @@ RUN find /usr/src/app/Marabou -type f -name "*.sh" -exec chmod +x {} \;
 RUN pip3 install numpy
 
 WORKDIR /usr/src/app/vnncomp2023/benchmarks/acasxu
+
 RUN python3 generate.py
 
 RUN chmod +x /usr/src/app/vnncomp2023/run_all_categories.sh && \

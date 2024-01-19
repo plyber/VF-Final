@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   neural-verification:
-    container_name: neural-verification-test
+    container_name: abcrown-tool
     build:
       context: .
       dockerfile: Dockerfile
