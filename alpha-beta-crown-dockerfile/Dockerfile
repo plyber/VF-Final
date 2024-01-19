@@ -1,5 +1,5 @@
 
-FROM ubuntu:23.04
+FROM nvidia/cuda:11.2.2-base-ubuntu20.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -36,8 +36,7 @@ RUN pip install /usr/src/app/alpha-beta-CROWN/auto_LiRPA
 RUN mkdir "vnncomp2023_benchmarks"
 WORKDIR /usr/src/app/vnncomp2023_benchmarks
 
-RUN cd vnncomp2023_benchmarks && \
-    git init && \
+RUN git init && \
     git remote add origin https://github.com/ChristopherBrix/vnncomp2023_benchmarks.git && \
     git config core.sparseCheckout true && \
     echo 'benchmarks/acasxu/*' >> .git/info/sparse-checkout && \
@@ -55,5 +54,5 @@ RUN pip3 install numpy
 
 WORKDIR /usr/src/app/alpha-beta-CROWN/complete_verifier
 
-CMD ["/bin/bash", "-c", ". activate alpha-beta-crown && pip /usr/src/app/alpha-beta-CROWN/complete_verifier/abcrown.py --config /usr/src/app/alpha-beta-CROWN/complete_verifier/exp_configs/vnncomp23/acasxu.yaml"]
+CMD ["/bin/bash", "-c", ". activate alpha-beta-crown && python /usr/src/app/alpha-beta-CROWN/complete_verifier/abcrown.py --config /usr/src/app/alpha-beta-CROWN/complete_verifier/exp_configs/vnncomp23/acasxu.yaml"]
 
