@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM nvidia/cuda:11.2.2-base-ubuntu20.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -48,7 +48,6 @@ RUN git init && \
 RUN find . -type f -name "*.gz" -exec echo {} \; -exec gunzip {} \;
 
 WORKDIR /usr/src/app
-RUN git clone https://github.com/Verified-Intelligence/alpha-beta-CROWN.git
 
 RUN git clone --no-checkout --config core.fileMode=true https://github.com/plyber/VF-Final.git && \
     cd VF-Final && \
@@ -68,7 +67,14 @@ WORKDIR /usr/src/app/vnncomp2023/benchmarks/acasxu
 RUN python3 generate.py
 
 RUN chmod +x /usr/src/app/vnncomp2023/run_all_categories.sh && \
-    chmod +x /usr/src/app/vnncomp2023/run_single_instance.sh
+    chmod +x /usr/src/app/vnncomp2023/run_single_instance.sh && \
+    chmod +x /usr/src/app/Marabou/vnncomp/install_tool.sh
+
+WORKDIR /usr/src/app/Marabou/vnncomp
+RUN ./install_tool.sh
 
 WORKDIR /usr/src/app
+
+#navigate to usr/src/app/vnncomp2023 and execute command
+#./run_all_categories.sh v1 /usr/src/app/Marabou/vnncomp /usr/src/app/vnncomp2023 out.csv counterexamples "acasxu" all
 

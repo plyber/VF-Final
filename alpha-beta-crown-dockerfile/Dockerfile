@@ -54,5 +54,4 @@ RUN pip3 install numpy
 
 WORKDIR /usr/src/app/alpha-beta-CROWN/complete_verifier
 
-CMD ["/bin/bash", "-c", ". activate alpha-beta-crown && python /usr/src/app/alpha-beta-CROWN/complete_verifier/abcrown.py --config /usr/src/app/alpha-beta-CROWN/complete_verifier/exp_configs/vnncomp23/acasxu.yaml"]
-
+CMD ["/bin/bash", "-c", ". activate alpha-beta-crown && python /usr/src/app/alpha-beta-CROWN/complete_verifier/abcrown.py --config /usr/src/app/alpha-beta-CROWN/complete_verifier/exp_configs/vnncomp23/acasxu.yaml >> logs.txt"]
