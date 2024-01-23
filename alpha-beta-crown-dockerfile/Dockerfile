@@ -3,7 +3,7 @@ FROM nvidia/cuda:11.2.2-base-ubuntu20.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && apt-get install -y wget git openssh-client
+RUN apt-get update && apt-get install -y wget git openssh-client bc sudo psmisc
 
 RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh
 RUN bash ~/miniconda.sh -b -p $HOME/miniconda
@@ -42,9 +42,8 @@ RUN git init && \
     echo 'benchmarks/acasxu/*' >> .git/info/sparse-checkout && \
     echo 'run_all_categories.sh' >> .git/info/sparse-checkout && \
     echo 'run_single_instance.sh' >> .git/info/sparse-checkout && \
-    git pull origin main
-
-RUN find . -type f -name "*.gz" -exec echo {} \; -exec gunzip {} \;
+    git pull origin main && \
+    find . -type f -name "*.gz" -exec gunzip {} \;
 
 WORKDIR /usr/src/app
 
@@ -54,4 +53,4 @@ RUN pip3 install numpy
 
 WORKDIR /usr/src/app/alpha-beta-CROWN/complete_verifier
 
-CMD ["/bin/bash", "-c", ". activate alpha-beta-crown && python /usr/src/app/alpha-beta-CROWN/complete_verifier/abcrown.py --config /usr/src/app/alpha-beta-CROWN/complete_verifier/exp_configs/vnncomp23/acasxu.yaml >> logs.txt"]
+CMD ["/bin/bash", "-c", ". activate alpha-beta-crown && python /usr/src/app/alpha-beta-CROWN/complete_verifier/abcrown.py --config /usr/src/app/alpha-beta-CROWN/complete_verifier/exp_configs/vnncomp23/acasxu.yaml.txt"]
